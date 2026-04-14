@@ -1,0 +1,13 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# SQLite database
+backend/closetiq.db
+
+# Local environment
+.env
+.venv
+venv/

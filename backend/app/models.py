@@ -1,8 +1,8 @@
-from sqlalchemy import Column, Integer, String, Boolean, Text, TIMESTAMP, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, Text, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
-
-Base = declarative_base()
+from datetime import datetime
+from .database import Base
 
 class User(Base):
     __tablename__ = "users"
@@ -12,7 +12,7 @@ class User(Base):
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
-    created_at = Column(TIMESTAMP, default="CURRENT_TIMESTAMP")
+    created_at = Column(DateTime, default=datetime.utcnow)
 
 class Category(Base):
     __tablename__ = "categories"
@@ -32,7 +32,7 @@ class Clothes(Base):
     brand = Column(String)
     image_url = Column(String)
     description = Column(Text)
-    created_at = Column(TIMESTAMP, default="CURRENT_TIMESTAMP")
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User")
     category = relationship("Category")
@@ -44,7 +44,7 @@ class Outfit(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     name = Column(String)
     description = Column(Text)
-    created_at = Column(TIMESTAMP, default="CURRENT_TIMESTAMP")
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     user = relationship("User")
 
