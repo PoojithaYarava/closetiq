@@ -1,8 +1,13 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routes import auth, closet, recommendations
+from .database import Base, engine
+from .models import User, Category, Clothes, Outfit, OutfitItem
 
 app = FastAPI(title="ClosetIQ API", version="1.0.0")
+
+# Ensure DB tables exist on startup
+Base.metadata.create_all(bind=engine)
 
 # CORS middleware
 app.add_middleware(
