@@ -27,5 +27,20 @@ services:
     environment:
       - DATABASE_URL=postgresql://closet_user:closet_pass@postgres:5432/closetiq
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    environment:
+      - VITE_API_URL=http://backend:8000
+
 volumes:
   postgres_data:

@@ -47,13 +47,17 @@ A professional closet management dashboard with outfit recommendations.
 > Note: The frontend Vite dev server proxies `/auth`, `/closet`, and `/recommendations` to `http://localhost:8000`.
 ### PostgreSQL with Docker
 
-To run the full backend and PostgreSQL locally using Docker Compose:
+To run the full backend, frontend, and PostgreSQL locally using Docker Compose:
 ```bash
 docker-compose up --build -d
 ```
-This starts PostgreSQL and the backend API on `http://localhost:8000`.
+This starts:
+- backend API on `http://localhost:8000`
+- frontend app on `http://localhost:5173`
 
 If you want to use a local `.env` file instead, copy `backend/.env.example` to `backend/.env` and update it with your database credentials.
+
+Frontend environment variables can also be configured by copying `frontend/.env.example` to `frontend/.env`.
 ### Frontend
 
 1. Install Node.js dependencies:
